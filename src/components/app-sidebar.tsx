@@ -1,28 +1,22 @@
-"use client"
-
-import * as React from "react"
+import * as React from "react";
+import { Link } from "@tanstack/react-router";
 import {
-  ArrowUpCircleIcon,
-  BarChartIcon,
-  CameraIcon,
-  ClipboardListIcon,
-  DatabaseIcon,
-  FileCodeIcon,
-  FileIcon,
-  FileTextIcon,
-  FolderIcon,
-  HelpCircleIcon,
+  BuildingIcon,
+  CircleHelpIcon,
   LayoutDashboardIcon,
-  ListIcon,
-  SearchIcon,
+  LayersIcon,
+  MapPinnedIcon,
+  ReceiptIndianRupeeIcon,
   SettingsIcon,
-  UsersIcon,
-} from "lucide-react"
+  ShieldCheckIcon,
+  StoreIcon,
+  TagsIcon,
+  UserRoundIcon,
+} from "lucide-react";
 
-import { NavDocuments } from "@/components/nav-documents"
-import { NavMain } from "@/components/nav-main"
-import { NavSecondary } from "@/components/nav-secondary"
-import { NavUser } from "@/components/nav-user"
+import { NavMain, type NavItem } from "@/components/nav-main";
+import { NavSecondary } from "@/components/nav-secondary";
+import { NavUser } from "@/components/nav-user";
 import {
   Sidebar,
   SidebarContent,
@@ -31,151 +25,72 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
 
-const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-  navMain: [
-    {
-      title: "Dashboard",
-      url: "#",
-      icon: LayoutDashboardIcon,
-    },
-    {
-      title: "Lifecycle",
-      url: "#",
-      icon: ListIcon,
-    },
-    {
-      title: "Analytics",
-      url: "#",
-      icon: BarChartIcon,
-    },
-    {
-      title: "Projects",
-      url: "#",
-      icon: FolderIcon,
-    },
-    {
-      title: "Team",
-      url: "#",
-      icon: UsersIcon,
-    },
-  ],
-  navClouds: [
-    {
-      title: "Capture",
-      icon: CameraIcon,
-      isActive: true,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Proposal",
-      icon: FileTextIcon,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Prompts",
-      icon: FileCodeIcon,
-      url: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          url: "#",
-        },
-        {
-          title: "Archived",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  navSecondary: [
-    {
-      title: "Settings",
-      url: "#",
-      icon: SettingsIcon,
-    },
-    {
-      title: "Get Help",
-      url: "#",
-      icon: HelpCircleIcon,
-    },
-    {
-      title: "Search",
-      url: "#",
-      icon: SearchIcon,
-    },
-  ],
-  documents: [
-    {
-      name: "Data Library",
-      url: "#",
-      icon: DatabaseIcon,
-    },
-    {
-      name: "Reports",
-      url: "#",
-      icon: ClipboardListIcon,
-    },
-    {
-      name: "Word Assistant",
-      url: "#",
-      icon: FileIcon,
-    },
-  ],
-}
+export type PortalRole = "merchant" | "admin";
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+const merchantNav: NavItem[] = [
+  { title: "Dashboard", url: "/merchant", icon: LayoutDashboardIcon },
+  { title: "Business profile", url: "/merchant/profile", icon: BuildingIcon },
+  { title: "Stores", url: "/merchant/stores", icon: StoreIcon, badge: "4" },
+  { title: "Offers", url: "/merchant/offers", icon: TagsIcon, badge: "4" },
+  { title: "Transactions", url: "/merchant/transactions", icon: ReceiptIndianRupeeIcon },
+];
+
+const adminNav: NavItem[] = [
+  { title: "Dashboard", url: "/admin", icon: LayoutDashboardIcon },
+  { title: "Merchants", url: "/admin/merchants", icon: UserRoundIcon, badge: "2" },
+  { title: "Stores", url: "/admin/stores", icon: MapPinnedIcon, badge: "2" },
+  { title: "Offers", url: "/admin/offers", icon: TagsIcon, badge: "3" },
+  { title: "Categories", url: "/admin/categories", icon: LayersIcon },
+  { title: "Transactions", url: "/admin/transactions", icon: ReceiptIndianRupeeIcon },
+];
+
+const users = {
+  merchant: { name: "Rohan Mehta", email: "rohan@abcfitness.in", avatar: "" },
+  admin: { name: "Platform Admin", email: "admin@districtly.in", avatar: "" },
+};
+
+export function AppSidebar({
+  role,
+  ...props
+}: { role: PortalRole } & React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="offcanvas" {...props}>
+    <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
-            >
-              <a href="#">
-                <ArrowUpCircleIcon className="h-5 w-5" />
-                <span className="text-base font-semibold">Acme Inc.</span>
-              </a>
+            <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!p-1.5">
+              <Link to="/">
+                <ShieldCheckIcon className="!size-5" />
+                <span className="text-base font-semibold tracking-tight">Districtly</span>
+              </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
+
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavDocuments items={data.documents} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
+        <NavMain
+          label={role === "merchant" ? "Merchant portal" : "Admin portal"}
+          items={role === "merchant" ? merchantNav : adminNav}
+        />
+        <NavSecondary
+          className="mt-auto"
+          items={[
+            {
+              title: role === "merchant" ? "Switch to Admin" : "Switch to Merchant",
+              url: role === "merchant" ? "/admin" : "/merchant",
+              icon: SettingsIcon,
+            },
+            { title: "Help & docs", url: "/", icon: CircleHelpIcon },
+          ]}
+        />
       </SidebarContent>
+
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={users[role]} />
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }
