@@ -10,18 +10,61 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminCategoriesRouteImport } from './routes/admin.categories'
+import { Route as AdminMerchantsRouteImport } from './routes/admin.merchants'
+import { Route as AdminOffersRouteImport } from './routes/admin.offers'
+import { Route as AdminStoresRouteImport } from './routes/admin.stores'
+import { Route as AdminTransactionsRouteImport } from './routes/admin.transactions'
 import { Route as MerchantIndexRouteImport } from './routes/merchant.index'
+import { Route as MerchantOffersRouteImport } from './routes/merchant.offers'
 import { Route as MerchantProfileRouteImport } from './routes/merchant.profile'
 import { Route as MerchantStoresRouteImport } from './routes/merchant.stores'
+import { Route as MerchantTransactionsRouteImport } from './routes/merchant.transactions'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminCategoriesRoute = AdminCategoriesRouteImport.update({
+  id: '/admin/categories',
+  path: '/admin/categories',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminMerchantsRoute = AdminMerchantsRouteImport.update({
+  id: '/admin/merchants',
+  path: '/admin/merchants',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminOffersRoute = AdminOffersRouteImport.update({
+  id: '/admin/offers',
+  path: '/admin/offers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminStoresRoute = AdminStoresRouteImport.update({
+  id: '/admin/stores',
+  path: '/admin/stores',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminTransactionsRoute = AdminTransactionsRouteImport.update({
+  id: '/admin/transactions',
+  path: '/admin/transactions',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MerchantIndexRoute = MerchantIndexRouteImport.update({
   id: '/merchant/',
   path: '/merchant/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MerchantOffersRoute = MerchantOffersRouteImport.update({
+  id: '/merchant/offers',
+  path: '/merchant/offers',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MerchantProfileRoute = MerchantProfileRouteImport.update({
@@ -34,38 +77,112 @@ const MerchantStoresRoute = MerchantStoresRouteImport.update({
   path: '/merchant/stores',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MerchantTransactionsRoute = MerchantTransactionsRouteImport.update({
+  id: '/merchant/transactions',
+  path: '/merchant/transactions',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/merchants': typeof AdminMerchantsRoute
+  '/admin/offers': typeof AdminOffersRoute
+  '/admin/stores': typeof AdminStoresRoute
+  '/admin/transactions': typeof AdminTransactionsRoute
+  '/merchant/offers': typeof MerchantOffersRoute
   '/merchant/profile': typeof MerchantProfileRoute
   '/merchant/stores': typeof MerchantStoresRoute
+  '/merchant/transactions': typeof MerchantTransactionsRoute
+  '/admin/': typeof AdminIndexRoute
   '/merchant/': typeof MerchantIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/merchants': typeof AdminMerchantsRoute
+  '/admin/offers': typeof AdminOffersRoute
+  '/admin/stores': typeof AdminStoresRoute
+  '/admin/transactions': typeof AdminTransactionsRoute
+  '/merchant/offers': typeof MerchantOffersRoute
   '/merchant/profile': typeof MerchantProfileRoute
   '/merchant/stores': typeof MerchantStoresRoute
+  '/merchant/transactions': typeof MerchantTransactionsRoute
+  '/admin': typeof AdminIndexRoute
   '/merchant': typeof MerchantIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin/categories': typeof AdminCategoriesRoute
+  '/admin/merchants': typeof AdminMerchantsRoute
+  '/admin/offers': typeof AdminOffersRoute
+  '/admin/stores': typeof AdminStoresRoute
+  '/admin/transactions': typeof AdminTransactionsRoute
+  '/merchant/offers': typeof MerchantOffersRoute
   '/merchant/profile': typeof MerchantProfileRoute
   '/merchant/stores': typeof MerchantStoresRoute
+  '/merchant/transactions': typeof MerchantTransactionsRoute
+  '/admin/': typeof AdminIndexRoute
   '/merchant/': typeof MerchantIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/merchant/profile' | '/merchant/stores' | '/merchant/'
+  fullPaths:
+    | '/'
+    | '/admin/categories'
+    | '/admin/merchants'
+    | '/admin/offers'
+    | '/admin/stores'
+    | '/admin/transactions'
+    | '/merchant/offers'
+    | '/merchant/profile'
+    | '/merchant/stores'
+    | '/merchant/transactions'
+    | '/admin/'
+    | '/merchant/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/merchant/profile' | '/merchant/stores' | '/merchant'
-  id: '__root__' | '/' | '/merchant/profile' | '/merchant/stores' | '/merchant/'
+  to:
+    | '/'
+    | '/admin/categories'
+    | '/admin/merchants'
+    | '/admin/offers'
+    | '/admin/stores'
+    | '/admin/transactions'
+    | '/merchant/offers'
+    | '/merchant/profile'
+    | '/merchant/stores'
+    | '/merchant/transactions'
+    | '/admin'
+    | '/merchant'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin/categories'
+    | '/admin/merchants'
+    | '/admin/offers'
+    | '/admin/stores'
+    | '/admin/transactions'
+    | '/merchant/offers'
+    | '/merchant/profile'
+    | '/merchant/stores'
+    | '/merchant/transactions'
+    | '/admin/'
+    | '/merchant/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminCategoriesRoute: typeof AdminCategoriesRoute
+  AdminMerchantsRoute: typeof AdminMerchantsRoute
+  AdminOffersRoute: typeof AdminOffersRoute
+  AdminStoresRoute: typeof AdminStoresRoute
+  AdminTransactionsRoute: typeof AdminTransactionsRoute
+  MerchantOffersRoute: typeof MerchantOffersRoute
   MerchantProfileRoute: typeof MerchantProfileRoute
   MerchantStoresRoute: typeof MerchantStoresRoute
+  MerchantTransactionsRoute: typeof MerchantTransactionsRoute
+  AdminIndexRoute: typeof AdminIndexRoute
   MerchantIndexRoute: typeof MerchantIndexRoute
 }
 
@@ -78,11 +195,60 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/categories': {
+      id: '/admin/categories'
+      path: '/admin/categories'
+      fullPath: '/admin/categories'
+      preLoaderRoute: typeof AdminCategoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/merchants': {
+      id: '/admin/merchants'
+      path: '/admin/merchants'
+      fullPath: '/admin/merchants'
+      preLoaderRoute: typeof AdminMerchantsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/offers': {
+      id: '/admin/offers'
+      path: '/admin/offers'
+      fullPath: '/admin/offers'
+      preLoaderRoute: typeof AdminOffersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/stores': {
+      id: '/admin/stores'
+      path: '/admin/stores'
+      fullPath: '/admin/stores'
+      preLoaderRoute: typeof AdminStoresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/transactions': {
+      id: '/admin/transactions'
+      path: '/admin/transactions'
+      fullPath: '/admin/transactions'
+      preLoaderRoute: typeof AdminTransactionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/merchant/': {
       id: '/merchant/'
       path: '/merchant'
       fullPath: '/merchant/'
       preLoaderRoute: typeof MerchantIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/merchant/offers': {
+      id: '/merchant/offers'
+      path: '/merchant/offers'
+      fullPath: '/merchant/offers'
+      preLoaderRoute: typeof MerchantOffersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/merchant/profile': {
@@ -99,13 +265,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MerchantStoresRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/merchant/transactions': {
+      id: '/merchant/transactions'
+      path: '/merchant/transactions'
+      fullPath: '/merchant/transactions'
+      preLoaderRoute: typeof MerchantTransactionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminCategoriesRoute: AdminCategoriesRoute,
+  AdminMerchantsRoute: AdminMerchantsRoute,
+  AdminOffersRoute: AdminOffersRoute,
+  AdminStoresRoute: AdminStoresRoute,
+  AdminTransactionsRoute: AdminTransactionsRoute,
+  MerchantOffersRoute: MerchantOffersRoute,
   MerchantProfileRoute: MerchantProfileRoute,
   MerchantStoresRoute: MerchantStoresRoute,
+  MerchantTransactionsRoute: MerchantTransactionsRoute,
+  AdminIndexRoute: AdminIndexRoute,
   MerchantIndexRoute: MerchantIndexRoute,
 }
 export const routeTree = rootRouteImport
