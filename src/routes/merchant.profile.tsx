@@ -116,14 +116,16 @@ function Profile() {
               <CardDescription>All steps complete except one branch approval.</CardDescription>
             </CardHeader>
             <CardContent className="space-y-2 text-sm">
-              {[
-                ["Business details", "ACTIVE"],
-                ["Category selected", "ACTIVE"],
-                ["Stores added", "ACTIVE"],
-                ["Map pins confirmed", "ACTIVE"],
-                ["KYC documents", "VERIFIED"],
-                ["Admin review", "PENDING"],
-              ].map(([step, status]) => (
+              {(
+                [
+                  ["Business details", "ACTIVE"],
+                  ["Category selected", "ACTIVE"],
+                  ["Stores added", "ACTIVE"],
+                  ["Map pins confirmed", "ACTIVE"],
+                  ["KYC documents", "VERIFIED"],
+                  ["Admin review", "PENDING"],
+                ] as [string, string][]
+              ).map(([step, status]) => (
                 <div key={step} className="flex items-center justify-between">
                   <span className="text-muted-foreground">{step}</span>
                   <StatusBadge status={status} />
