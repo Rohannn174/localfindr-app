@@ -123,7 +123,7 @@ function Profile() {
                 ["Map pins confirmed", "ACTIVE"],
                 ["KYC documents", "VERIFIED"],
                 ["Admin review", "PENDING"],
-              ].map(([step, status]) => (
+              ].map(([step, status]: [string, string]) => (
                 <div key={step} className="flex items-center justify-between">
                   <span className="text-muted-foreground">{step}</span>
                   <StatusBadge status={status} />
